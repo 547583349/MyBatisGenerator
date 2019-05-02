@@ -1,0 +1,15 @@
+E:\resource\elastic-job\src\main\java\com\wangyi\Mybatis3Impl\WyMyBatis3Impl.java
+E:\resource\elastic-job\src\main\java\com\wangyi\entity\Gun.java
+E:\resource\elastic-job\src\main\java\com\wangyi\mapper\ClearErrinfoMapper.java
+E:\resource\elastic-job\src\main\java\com\wangyi\entity\Lock.java
+E:\resource\elastic-job\src\main\java\com\wangyi\mapper\GunSqlProvider.java
+E:\resource\elastic-job\src\main\java\com\wangyi\entity\ClearErrinfo.java
+E:\resource\elastic-job\src\main\java\com\wangyi\mapper\GunMapper.java
+E:\resource\elastic-job\src\main\java\com\wangyi\MyElasticDataflowJob.java
+E:\resource\elastic-job\src\main\java\com\wangyi\mapper\DeviceMapper.java
+E:\resource\elastic-job\src\main\java\com\wangyi\mapper\LockDAO.java
+E:\resource\elastic-job\src\main\java\com\wangyi\MyShardingStrategy.java
+E:\resource\elastic-job\src\main\java\com\wangyi\entity\Device.java
+E:\resource\elastic-job\src\main\java\com\wangyi\MyElasticJob.java
+E:\resource\elastic-job\src\main\java\Main.java
+E:\resource\elastic-job\src\main\java\com\wangyi\entity\DeviceWithBLOBs.java

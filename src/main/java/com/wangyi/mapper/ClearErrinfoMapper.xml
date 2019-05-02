@@ -1,0 +1,335 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.wangyi.mapper.ClearErrinfoMapper" >
+  <resultMap id="BaseResultMap" type="com.wangyi.entity.ClearErrinfo" >
+    <constructor >
+      <idArg column="ERRINFO_ID" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="LINE_SN" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="ORGID" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="TERMID" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="ERROR_LOCATIONNOTE1" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="ERROR_LOCATIONNOTE2" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="ERROR_LOCATIONNOTE3" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="ERROR_LOCATIONNOTE4" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="ERROR_LOCATIONNOTE5" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="ERROR_LOCATIONNOTE6" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="EXCUTE_WAY" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="EXCUTE_WAYNOTE1" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="EXCUTE_WAYNOTE2" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="EXCUTE_MAN" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="TECH_ARRIVE_TIME" jdbcType="TIMESTAMP" javaType="java.util.Date" />
+      <arg column="TECH_LEAVE_TIME" jdbcType="TIMESTAMP" javaType="java.util.Date" />
+      <arg column="TECH_NAME" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="TECH_PHONE" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="MISTAKE_CARD" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="MISTAKE_CASH" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="MISTAKE_CASH_TIME" jdbcType="TIMESTAMP" javaType="java.util.Date" />
+      <arg column="SW_CARD_NO" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="ARRIVE_TIME" jdbcType="TIMESTAMP" javaType="java.util.Date" />
+      <arg column="LEAVE_TIME" jdbcType="TIMESTAMP" javaType="java.util.Date" />
+      <arg column="NEXT_TASK_NOTE" jdbcType="VARCHAR" javaType="java.lang.String" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ERRINFO_ID, LINE_SN, ORGID, TERMID, ERROR_LOCATIONNOTE1, ERROR_LOCATIONNOTE2, ERROR_LOCATIONNOTE3, 
+    ERROR_LOCATIONNOTE4, ERROR_LOCATIONNOTE5, ERROR_LOCATIONNOTE6, EXCUTE_WAY, EXCUTE_WAYNOTE1, 
+    EXCUTE_WAYNOTE2, EXCUTE_MAN, TECH_ARRIVE_TIME, TECH_LEAVE_TIME, TECH_NAME, TECH_PHONE, 
+    MISTAKE_CARD, MISTAKE_CASH, MISTAKE_CASH_TIME, SW_CARD_NO, ARRIVE_TIME, LEAVE_TIME, 
+    NEXT_TASK_NOTE
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from a_clear_errinfo
+    where ERRINFO_ID = #{errinfoId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from a_clear_errinfo
+    where ERRINFO_ID = #{errinfoId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.wangyi.entity.ClearErrinfo" >
+    insert into a_clear_errinfo (ERRINFO_ID, LINE_SN, ORGID, 
+      TERMID, ERROR_LOCATIONNOTE1, ERROR_LOCATIONNOTE2, 
+      ERROR_LOCATIONNOTE3, ERROR_LOCATIONNOTE4, 
+      ERROR_LOCATIONNOTE5, ERROR_LOCATIONNOTE6, 
+      EXCUTE_WAY, EXCUTE_WAYNOTE1, EXCUTE_WAYNOTE2, 
+      EXCUTE_MAN, TECH_ARRIVE_TIME, TECH_LEAVE_TIME, 
+      TECH_NAME, TECH_PHONE, MISTAKE_CARD, 
+      MISTAKE_CASH, MISTAKE_CASH_TIME, SW_CARD_NO, 
+      ARRIVE_TIME, LEAVE_TIME, NEXT_TASK_NOTE
+      )
+    values (#{errinfoId,jdbcType=VARCHAR}, #{lineSn,jdbcType=VARCHAR}, #{orgid,jdbcType=VARCHAR}, 
+      #{termid,jdbcType=VARCHAR}, #{errorLocationnote1,jdbcType=VARCHAR}, #{errorLocationnote2,jdbcType=VARCHAR}, 
+      #{errorLocationnote3,jdbcType=VARCHAR}, #{errorLocationnote4,jdbcType=VARCHAR}, 
+      #{errorLocationnote5,jdbcType=VARCHAR}, #{errorLocationnote6,jdbcType=VARCHAR}, 
+      #{excuteWay,jdbcType=VARCHAR}, #{excuteWaynote1,jdbcType=VARCHAR}, #{excuteWaynote2,jdbcType=VARCHAR}, 
+      #{excuteMan,jdbcType=VARCHAR}, #{techArriveTime,jdbcType=TIMESTAMP}, #{techLeaveTime,jdbcType=TIMESTAMP}, 
+      #{techName,jdbcType=VARCHAR}, #{techPhone,jdbcType=VARCHAR}, #{mistakeCard,jdbcType=VARCHAR}, 
+      #{mistakeCash,jdbcType=VARCHAR}, #{mistakeCashTime,jdbcType=TIMESTAMP}, #{swCardNo,jdbcType=VARCHAR}, 
+      #{arriveTime,jdbcType=TIMESTAMP}, #{leaveTime,jdbcType=TIMESTAMP}, #{nextTaskNote,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.wangyi.entity.ClearErrinfo" >
+    insert into a_clear_errinfo
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="errinfoId != null" >
+        ERRINFO_ID,
+      </if>
+      <if test="lineSn != null" >
+        LINE_SN,
+      </if>
+      <if test="orgid != null" >
+        ORGID,
+      </if>
+      <if test="termid != null" >
+        TERMID,
+      </if>
+      <if test="errorLocationnote1 != null" >
+        ERROR_LOCATIONNOTE1,
+      </if>
+      <if test="errorLocationnote2 != null" >
+        ERROR_LOCATIONNOTE2,
+      </if>
+      <if test="errorLocationnote3 != null" >
+        ERROR_LOCATIONNOTE3,
+      </if>
+      <if test="errorLocationnote4 != null" >
+        ERROR_LOCATIONNOTE4,
+      </if>
+      <if test="errorLocationnote5 != null" >
+        ERROR_LOCATIONNOTE5,
+      </if>
+      <if test="errorLocationnote6 != null" >
+        ERROR_LOCATIONNOTE6,
+      </if>
+      <if test="excuteWay != null" >
+        EXCUTE_WAY,
+      </if>
+      <if test="excuteWaynote1 != null" >
+        EXCUTE_WAYNOTE1,
+      </if>
+      <if test="excuteWaynote2 != null" >
+        EXCUTE_WAYNOTE2,
+      </if>
+      <if test="excuteMan != null" >
+        EXCUTE_MAN,
+      </if>
+      <if test="techArriveTime != null" >
+        TECH_ARRIVE_TIME,
+      </if>
+      <if test="techLeaveTime != null" >
+        TECH_LEAVE_TIME,
+      </if>
+      <if test="techName != null" >
+        TECH_NAME,
+      </if>
+      <if test="techPhone != null" >
+        TECH_PHONE,
+      </if>
+      <if test="mistakeCard != null" >
+        MISTAKE_CARD,
+      </if>
+      <if test="mistakeCash != null" >
+        MISTAKE_CASH,
+      </if>
+      <if test="mistakeCashTime != null" >
+        MISTAKE_CASH_TIME,
+      </if>
+      <if test="swCardNo != null" >
+        SW_CARD_NO,
+      </if>
+      <if test="arriveTime != null" >
+        ARRIVE_TIME,
+      </if>
+      <if test="leaveTime != null" >
+        LEAVE_TIME,
+      </if>
+      <if test="nextTaskNote != null" >
+        NEXT_TASK_NOTE,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="errinfoId != null" >
+        #{errinfoId,jdbcType=VARCHAR},
+      </if>
+      <if test="lineSn != null" >
+        #{lineSn,jdbcType=VARCHAR},
+      </if>
+      <if test="orgid != null" >
+        #{orgid,jdbcType=VARCHAR},
+      </if>
+      <if test="termid != null" >
+        #{termid,jdbcType=VARCHAR},
+      </if>
+      <if test="errorLocationnote1 != null" >
+        #{errorLocationnote1,jdbcType=VARCHAR},
+      </if>
+      <if test="errorLocationnote2 != null" >
+        #{errorLocationnote2,jdbcType=VARCHAR},
+      </if>
+      <if test="errorLocationnote3 != null" >
+        #{errorLocationnote3,jdbcType=VARCHAR},
+      </if>
+      <if test="errorLocationnote4 != null" >
+        #{errorLocationnote4,jdbcType=VARCHAR},
+      </if>
+      <if test="errorLocationnote5 != null" >
+        #{errorLocationnote5,jdbcType=VARCHAR},
+      </if>
+      <if test="errorLocationnote6 != null" >
+        #{errorLocationnote6,jdbcType=VARCHAR},
+      </if>
+      <if test="excuteWay != null" >
+        #{excuteWay,jdbcType=VARCHAR},
+      </if>
+      <if test="excuteWaynote1 != null" >
+        #{excuteWaynote1,jdbcType=VARCHAR},
+      </if>
+      <if test="excuteWaynote2 != null" >
+        #{excuteWaynote2,jdbcType=VARCHAR},
+      </if>
+      <if test="excuteMan != null" >
+        #{excuteMan,jdbcType=VARCHAR},
+      </if>
+      <if test="techArriveTime != null" >
+        #{techArriveTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="techLeaveTime != null" >
+        #{techLeaveTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="techName != null" >
+        #{techName,jdbcType=VARCHAR},
+      </if>
+      <if test="techPhone != null" >
+        #{techPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="mistakeCard != null" >
+        #{mistakeCard,jdbcType=VARCHAR},
+      </if>
+      <if test="mistakeCash != null" >
+        #{mistakeCash,jdbcType=VARCHAR},
+      </if>
+      <if test="mistakeCashTime != null" >
+        #{mistakeCashTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="swCardNo != null" >
+        #{swCardNo,jdbcType=VARCHAR},
+      </if>
+      <if test="arriveTime != null" >
+        #{arriveTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="leaveTime != null" >
+        #{leaveTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="nextTaskNote != null" >
+        #{nextTaskNote,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.wangyi.entity.ClearErrinfo" >
+    update a_clear_errinfo
+    <set >
+      <if test="lineSn != null" >
+        LINE_SN = #{lineSn,jdbcType=VARCHAR},
+      </if>
+      <if test="orgid != null" >
+        ORGID = #{orgid,jdbcType=VARCHAR},
+      </if>
+      <if test="termid != null" >
+        TERMID = #{termid,jdbcType=VARCHAR},
+      </if>
+      <if test="errorLocationnote1 != null" >
+        ERROR_LOCATIONNOTE1 = #{errorLocationnote1,jdbcType=VARCHAR},
+      </if>
+      <if test="errorLocationnote2 != null" >
+        ERROR_LOCATIONNOTE2 = #{errorLocationnote2,jdbcType=VARCHAR},
+      </if>
+      <if test="errorLocationnote3 != null" >
+        ERROR_LOCATIONNOTE3 = #{errorLocationnote3,jdbcType=VARCHAR},
+      </if>
+      <if test="errorLocationnote4 != null" >
+        ERROR_LOCATIONNOTE4 = #{errorLocationnote4,jdbcType=VARCHAR},
+      </if>
+      <if test="errorLocationnote5 != null" >
+        ERROR_LOCATIONNOTE5 = #{errorLocationnote5,jdbcType=VARCHAR},
+      </if>
+      <if test="errorLocationnote6 != null" >
+        ERROR_LOCATIONNOTE6 = #{errorLocationnote6,jdbcType=VARCHAR},
+      </if>
+      <if test="excuteWay != null" >
+        EXCUTE_WAY = #{excuteWay,jdbcType=VARCHAR},
+      </if>
+      <if test="excuteWaynote1 != null" >
+        EXCUTE_WAYNOTE1 = #{excuteWaynote1,jdbcType=VARCHAR},
+      </if>
+      <if test="excuteWaynote2 != null" >
+        EXCUTE_WAYNOTE2 = #{excuteWaynote2,jdbcType=VARCHAR},
+      </if>
+      <if test="excuteMan != null" >
+        EXCUTE_MAN = #{excuteMan,jdbcType=VARCHAR},
+      </if>
+      <if test="techArriveTime != null" >
+        TECH_ARRIVE_TIME = #{techArriveTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="techLeaveTime != null" >
+        TECH_LEAVE_TIME = #{techLeaveTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="techName != null" >
+        TECH_NAME = #{techName,jdbcType=VARCHAR},
+      </if>
+      <if test="techPhone != null" >
+        TECH_PHONE = #{techPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="mistakeCard != null" >
+        MISTAKE_CARD = #{mistakeCard,jdbcType=VARCHAR},
+      </if>
+      <if test="mistakeCash != null" >
+        MISTAKE_CASH = #{mistakeCash,jdbcType=VARCHAR},
+      </if>
+      <if test="mistakeCashTime != null" >
+        MISTAKE_CASH_TIME = #{mistakeCashTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="swCardNo != null" >
+        SW_CARD_NO = #{swCardNo,jdbcType=VARCHAR},
+      </if>
+      <if test="arriveTime != null" >
+        ARRIVE_TIME = #{arriveTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="leaveTime != null" >
+        LEAVE_TIME = #{leaveTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="nextTaskNote != null" >
+        NEXT_TASK_NOTE = #{nextTaskNote,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ERRINFO_ID = #{errinfoId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.wangyi.entity.ClearErrinfo" >
+    update a_clear_errinfo
+    set LINE_SN = #{lineSn,jdbcType=VARCHAR},
+      ORGID = #{orgid,jdbcType=VARCHAR},
+      TERMID = #{termid,jdbcType=VARCHAR},
+      ERROR_LOCATIONNOTE1 = #{errorLocationnote1,jdbcType=VARCHAR},
+      ERROR_LOCATIONNOTE2 = #{errorLocationnote2,jdbcType=VARCHAR},
+      ERROR_LOCATIONNOTE3 = #{errorLocationnote3,jdbcType=VARCHAR},
+      ERROR_LOCATIONNOTE4 = #{errorLocationnote4,jdbcType=VARCHAR},
+      ERROR_LOCATIONNOTE5 = #{errorLocationnote5,jdbcType=VARCHAR},
+      ERROR_LOCATIONNOTE6 = #{errorLocationnote6,jdbcType=VARCHAR},
+      EXCUTE_WAY = #{excuteWay,jdbcType=VARCHAR},
+      EXCUTE_WAYNOTE1 = #{excuteWaynote1,jdbcType=VARCHAR},
+      EXCUTE_WAYNOTE2 = #{excuteWaynote2,jdbcType=VARCHAR},
+      EXCUTE_MAN = #{excuteMan,jdbcType=VARCHAR},
+      TECH_ARRIVE_TIME = #{techArriveTime,jdbcType=TIMESTAMP},
+      TECH_LEAVE_TIME = #{techLeaveTime,jdbcType=TIMESTAMP},
+      TECH_NAME = #{techName,jdbcType=VARCHAR},
+      TECH_PHONE = #{techPhone,jdbcType=VARCHAR},
+      MISTAKE_CARD = #{mistakeCard,jdbcType=VARCHAR},
+      MISTAKE_CASH = #{mistakeCash,jdbcType=VARCHAR},
+      MISTAKE_CASH_TIME = #{mistakeCashTime,jdbcType=TIMESTAMP},
+      SW_CARD_NO = #{swCardNo,jdbcType=VARCHAR},
+      ARRIVE_TIME = #{arriveTime,jdbcType=TIMESTAMP},
+      LEAVE_TIME = #{leaveTime,jdbcType=TIMESTAMP},
+      NEXT_TASK_NOTE = #{nextTaskNote,jdbcType=VARCHAR}
+    where ERRINFO_ID = #{errinfoId,jdbcType=VARCHAR}
+  </update>
+</mapper>

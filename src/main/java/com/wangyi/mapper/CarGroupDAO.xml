@@ -1,0 +1,670 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wangyi.mapper.CarGroupDAO">
+  <resultMap id="BaseResultMap" type="com.wangyi.entity.CarGroup">
+    <id column="ID" jdbcType="VARCHAR" property="id" />
+    <result column="LINE_NAME" jdbcType="VARCHAR" property="lineName" />
+    <result column="CLEANING_CREW1" jdbcType="VARCHAR" property="cleaningCrew1" />
+    <result column="CLEANING_CREW2" jdbcType="VARCHAR" property="cleaningCrew2" />
+    <result column="CLEANING_CREW_NAME1" jdbcType="VARCHAR" property="cleaningCrewName1" />
+    <result column="CLEANING_CREW_NAME2" jdbcType="VARCHAR" property="cleaningCrewName2" />
+    <result column="DRIVER" jdbcType="VARCHAR" property="driver" />
+    <result column="CAR_NUMBER" jdbcType="VARCHAR" property="carNumber" />
+    <result column="CAR_NO" jdbcType="VARCHAR" property="carNo" />
+    <result column="ESCORT_NAME1" jdbcType="VARCHAR" property="escortName1" />
+    <result column="ESCORT_NAME2" jdbcType="VARCHAR" property="escortName2" />
+    <result column="ESCORT_ID1" jdbcType="VARCHAR" property="escortId1" />
+    <result column="ESCORT_ID2" jdbcType="VARCHAR" property="escortId2" />
+    <result column="START_TIME" jdbcType="TIMESTAMP" property="startTime" />
+    <result column="NEW_DRIVER" jdbcType="VARCHAR" property="newDriver" />
+    <result column="NEW_PERSON" jdbcType="VARCHAR" property="newPerson" />
+    <result column="CLASSES" jdbcType="VARCHAR" property="classes" />
+    <result column="NEW_DRIVER_NAME" jdbcType="VARCHAR" property="newDriverName" />
+    <result column="NEW_PERSON_NAME" jdbcType="VARCHAR" property="newPersonName" />
+    <result column="TASK_DATE" jdbcType="VARCHAR" property="taskDate" />
+    <result column="IS_SEND_WEIXIN_MSG" jdbcType="VARCHAR" property="isSendWeixinMsg" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.wangyi.entity.CarGroupWithBLOBs">
+    <result column="DRIVER_NAME" jdbcType="LONGVARCHAR" property="driverName" />
+    <result column="LINE_REMARKS" jdbcType="LONGVARCHAR" property="lineRemarks" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    ID, LINE_NAME, CLEANING_CREW1, CLEANING_CREW2, CLEANING_CREW_NAME1, CLEANING_CREW_NAME2, 
+    DRIVER, CAR_NUMBER, CAR_NO, ESCORT_NAME1, ESCORT_NAME2, ESCORT_ID1, ESCORT_ID2, START_TIME, 
+    NEW_DRIVER, NEW_PERSON, CLASSES, NEW_DRIVER_NAME, NEW_PERSON_NAME, TASK_DATE, IS_SEND_WEIXIN_MSG
+  </sql>
+  <sql id="Blob_Column_List">
+    DRIVER_NAME, LINE_REMARKS
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="ResultMapWithBLOBs">
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from e_car_group
+    where ID = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from e_car_group
+    where ID = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.wangyi.entity.CarGroupWithBLOBs">
+    insert into e_car_group (ID, LINE_NAME, CLEANING_CREW1, 
+      CLEANING_CREW2, CLEANING_CREW_NAME1, CLEANING_CREW_NAME2, 
+      DRIVER, CAR_NUMBER, CAR_NO, 
+      ESCORT_NAME1, ESCORT_NAME2, ESCORT_ID1, 
+      ESCORT_ID2, START_TIME, NEW_DRIVER, 
+      NEW_PERSON, CLASSES, NEW_DRIVER_NAME, 
+      NEW_PERSON_NAME, TASK_DATE, IS_SEND_WEIXIN_MSG, 
+      DRIVER_NAME, LINE_REMARKS)
+    values (#{id,jdbcType=VARCHAR}, #{lineName,jdbcType=VARCHAR}, #{cleaningCrew1,jdbcType=VARCHAR}, 
+      #{cleaningCrew2,jdbcType=VARCHAR}, #{cleaningCrewName1,jdbcType=VARCHAR}, #{cleaningCrewName2,jdbcType=VARCHAR}, 
+      #{driver,jdbcType=VARCHAR}, #{carNumber,jdbcType=VARCHAR}, #{carNo,jdbcType=VARCHAR}, 
+      #{escortName1,jdbcType=VARCHAR}, #{escortName2,jdbcType=VARCHAR}, #{escortId1,jdbcType=VARCHAR}, 
+      #{escortId2,jdbcType=VARCHAR}, #{startTime,jdbcType=TIMESTAMP}, #{newDriver,jdbcType=VARCHAR}, 
+      #{newPerson,jdbcType=VARCHAR}, #{classes,jdbcType=VARCHAR}, #{newDriverName,jdbcType=VARCHAR}, 
+      #{newPersonName,jdbcType=VARCHAR}, #{taskDate,jdbcType=VARCHAR}, #{isSendWeixinMsg,jdbcType=VARCHAR}, 
+      #{driverName,jdbcType=LONGVARCHAR}, #{lineRemarks,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.wangyi.entity.CarGroupWithBLOBs">
+    insert into e_car_group
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        ID,
+      </if>
+      <if test="lineName != null">
+        LINE_NAME,
+      </if>
+      <if test="cleaningCrew1 != null">
+        CLEANING_CREW1,
+      </if>
+      <if test="cleaningCrew2 != null">
+        CLEANING_CREW2,
+      </if>
+      <if test="cleaningCrewName1 != null">
+        CLEANING_CREW_NAME1,
+      </if>
+      <if test="cleaningCrewName2 != null">
+        CLEANING_CREW_NAME2,
+      </if>
+      <if test="driver != null">
+        DRIVER,
+      </if>
+      <if test="carNumber != null">
+        CAR_NUMBER,
+      </if>
+      <if test="carNo != null">
+        CAR_NO,
+      </if>
+      <if test="escortName1 != null">
+        ESCORT_NAME1,
+      </if>
+      <if test="escortName2 != null">
+        ESCORT_NAME2,
+      </if>
+      <if test="escortId1 != null">
+        ESCORT_ID1,
+      </if>
+      <if test="escortId2 != null">
+        ESCORT_ID2,
+      </if>
+      <if test="startTime != null">
+        START_TIME,
+      </if>
+      <if test="newDriver != null">
+        NEW_DRIVER,
+      </if>
+      <if test="newPerson != null">
+        NEW_PERSON,
+      </if>
+      <if test="classes != null">
+        CLASSES,
+      </if>
+      <if test="newDriverName != null">
+        NEW_DRIVER_NAME,
+      </if>
+      <if test="newPersonName != null">
+        NEW_PERSON_NAME,
+      </if>
+      <if test="taskDate != null">
+        TASK_DATE,
+      </if>
+      <if test="isSendWeixinMsg != null">
+        IS_SEND_WEIXIN_MSG,
+      </if>
+      <if test="driverName != null">
+        DRIVER_NAME,
+      </if>
+      <if test="lineRemarks != null">
+        LINE_REMARKS,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="lineName != null">
+        #{lineName,jdbcType=VARCHAR},
+      </if>
+      <if test="cleaningCrew1 != null">
+        #{cleaningCrew1,jdbcType=VARCHAR},
+      </if>
+      <if test="cleaningCrew2 != null">
+        #{cleaningCrew2,jdbcType=VARCHAR},
+      </if>
+      <if test="cleaningCrewName1 != null">
+        #{cleaningCrewName1,jdbcType=VARCHAR},
+      </if>
+      <if test="cleaningCrewName2 != null">
+        #{cleaningCrewName2,jdbcType=VARCHAR},
+      </if>
+      <if test="driver != null">
+        #{driver,jdbcType=VARCHAR},
+      </if>
+      <if test="carNumber != null">
+        #{carNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="carNo != null">
+        #{carNo,jdbcType=VARCHAR},
+      </if>
+      <if test="escortName1 != null">
+        #{escortName1,jdbcType=VARCHAR},
+      </if>
+      <if test="escortName2 != null">
+        #{escortName2,jdbcType=VARCHAR},
+      </if>
+      <if test="escortId1 != null">
+        #{escortId1,jdbcType=VARCHAR},
+      </if>
+      <if test="escortId2 != null">
+        #{escortId2,jdbcType=VARCHAR},
+      </if>
+      <if test="startTime != null">
+        #{startTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="newDriver != null">
+        #{newDriver,jdbcType=VARCHAR},
+      </if>
+      <if test="newPerson != null">
+        #{newPerson,jdbcType=VARCHAR},
+      </if>
+      <if test="classes != null">
+        #{classes,jdbcType=VARCHAR},
+      </if>
+      <if test="newDriverName != null">
+        #{newDriverName,jdbcType=VARCHAR},
+      </if>
+      <if test="newPersonName != null">
+        #{newPersonName,jdbcType=VARCHAR},
+      </if>
+      <if test="taskDate != null">
+        #{taskDate,jdbcType=VARCHAR},
+      </if>
+      <if test="isSendWeixinMsg != null">
+        #{isSendWeixinMsg,jdbcType=VARCHAR},
+      </if>
+      <if test="driverName != null">
+        #{driverName,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="lineRemarks != null">
+        #{lineRemarks,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.wangyi.entity.CarGroupWithBLOBs">
+    update e_car_group
+    <set>
+      <if test="lineName != null">
+        LINE_NAME = #{lineName,jdbcType=VARCHAR},
+      </if>
+      <if test="cleaningCrew1 != null">
+        CLEANING_CREW1 = #{cleaningCrew1,jdbcType=VARCHAR},
+      </if>
+      <if test="cleaningCrew2 != null">
+        CLEANING_CREW2 = #{cleaningCrew2,jdbcType=VARCHAR},
+      </if>
+      <if test="cleaningCrewName1 != null">
+        CLEANING_CREW_NAME1 = #{cleaningCrewName1,jdbcType=VARCHAR},
+      </if>
+      <if test="cleaningCrewName2 != null">
+        CLEANING_CREW_NAME2 = #{cleaningCrewName2,jdbcType=VARCHAR},
+      </if>
+      <if test="driver != null">
+        DRIVER = #{driver,jdbcType=VARCHAR},
+      </if>
+      <if test="carNumber != null">
+        CAR_NUMBER = #{carNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="carNo != null">
+        CAR_NO = #{carNo,jdbcType=VARCHAR},
+      </if>
+      <if test="escortName1 != null">
+        ESCORT_NAME1 = #{escortName1,jdbcType=VARCHAR},
+      </if>
+      <if test="escortName2 != null">
+        ESCORT_NAME2 = #{escortName2,jdbcType=VARCHAR},
+      </if>
+      <if test="escortId1 != null">
+        ESCORT_ID1 = #{escortId1,jdbcType=VARCHAR},
+      </if>
+      <if test="escortId2 != null">
+        ESCORT_ID2 = #{escortId2,jdbcType=VARCHAR},
+      </if>
+      <if test="startTime != null">
+        START_TIME = #{startTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="newDriver != null">
+        NEW_DRIVER = #{newDriver,jdbcType=VARCHAR},
+      </if>
+      <if test="newPerson != null">
+        NEW_PERSON = #{newPerson,jdbcType=VARCHAR},
+      </if>
+      <if test="classes != null">
+        CLASSES = #{classes,jdbcType=VARCHAR},
+      </if>
+      <if test="newDriverName != null">
+        NEW_DRIVER_NAME = #{newDriverName,jdbcType=VARCHAR},
+      </if>
+      <if test="newPersonName != null">
+        NEW_PERSON_NAME = #{newPersonName,jdbcType=VARCHAR},
+      </if>
+      <if test="taskDate != null">
+        TASK_DATE = #{taskDate,jdbcType=VARCHAR},
+      </if>
+      <if test="isSendWeixinMsg != null">
+        IS_SEND_WEIXIN_MSG = #{isSendWeixinMsg,jdbcType=VARCHAR},
+      </if>
+      <if test="driverName != null">
+        DRIVER_NAME = #{driverName,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="lineRemarks != null">
+        LINE_REMARKS = #{lineRemarks,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.wangyi.entity.CarGroupWithBLOBs">
+    update e_car_group
+    set LINE_NAME = #{lineName,jdbcType=VARCHAR},
+      CLEANING_CREW1 = #{cleaningCrew1,jdbcType=VARCHAR},
+      CLEANING_CREW2 = #{cleaningCrew2,jdbcType=VARCHAR},
+      CLEANING_CREW_NAME1 = #{cleaningCrewName1,jdbcType=VARCHAR},
+      CLEANING_CREW_NAME2 = #{cleaningCrewName2,jdbcType=VARCHAR},
+      DRIVER = #{driver,jdbcType=VARCHAR},
+      CAR_NUMBER = #{carNumber,jdbcType=VARCHAR},
+      CAR_NO = #{carNo,jdbcType=VARCHAR},
+      ESCORT_NAME1 = #{escortName1,jdbcType=VARCHAR},
+      ESCORT_NAME2 = #{escortName2,jdbcType=VARCHAR},
+      ESCORT_ID1 = #{escortId1,jdbcType=VARCHAR},
+      ESCORT_ID2 = #{escortId2,jdbcType=VARCHAR},
+      START_TIME = #{startTime,jdbcType=TIMESTAMP},
+      NEW_DRIVER = #{newDriver,jdbcType=VARCHAR},
+      NEW_PERSON = #{newPerson,jdbcType=VARCHAR},
+      CLASSES = #{classes,jdbcType=VARCHAR},
+      NEW_DRIVER_NAME = #{newDriverName,jdbcType=VARCHAR},
+      NEW_PERSON_NAME = #{newPersonName,jdbcType=VARCHAR},
+      TASK_DATE = #{taskDate,jdbcType=VARCHAR},
+      IS_SEND_WEIXIN_MSG = #{isSendWeixinMsg,jdbcType=VARCHAR},
+      DRIVER_NAME = #{driverName,jdbcType=LONGVARCHAR},
+      LINE_REMARKS = #{lineRemarks,jdbcType=LONGVARCHAR}
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.wangyi.entity.CarGroup">
+    update e_car_group
+    set LINE_NAME = #{lineName,jdbcType=VARCHAR},
+      CLEANING_CREW1 = #{cleaningCrew1,jdbcType=VARCHAR},
+      CLEANING_CREW2 = #{cleaningCrew2,jdbcType=VARCHAR},
+      CLEANING_CREW_NAME1 = #{cleaningCrewName1,jdbcType=VARCHAR},
+      CLEANING_CREW_NAME2 = #{cleaningCrewName2,jdbcType=VARCHAR},
+      DRIVER = #{driver,jdbcType=VARCHAR},
+      CAR_NUMBER = #{carNumber,jdbcType=VARCHAR},
+      CAR_NO = #{carNo,jdbcType=VARCHAR},
+      ESCORT_NAME1 = #{escortName1,jdbcType=VARCHAR},
+      ESCORT_NAME2 = #{escortName2,jdbcType=VARCHAR},
+      ESCORT_ID1 = #{escortId1,jdbcType=VARCHAR},
+      ESCORT_ID2 = #{escortId2,jdbcType=VARCHAR},
+      START_TIME = #{startTime,jdbcType=TIMESTAMP},
+      NEW_DRIVER = #{newDriver,jdbcType=VARCHAR},
+      NEW_PERSON = #{newPerson,jdbcType=VARCHAR},
+      CLASSES = #{classes,jdbcType=VARCHAR},
+      NEW_DRIVER_NAME = #{newDriverName,jdbcType=VARCHAR},
+      NEW_PERSON_NAME = #{newPersonName,jdbcType=VARCHAR},
+      TASK_DATE = #{taskDate,jdbcType=VARCHAR},
+      IS_SEND_WEIXIN_MSG = #{isSendWeixinMsg,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+  <resultMap id="BaseResultMap" type="com.wangyi.entity.CarGroup">
+    <id column="ID" jdbcType="VARCHAR" property="id" />
+    <result column="LINE_NAME" jdbcType="VARCHAR" property="lineName" />
+    <result column="CLEANING_CREW1" jdbcType="VARCHAR" property="cleaningCrew1" />
+    <result column="CLEANING_CREW2" jdbcType="VARCHAR" property="cleaningCrew2" />
+    <result column="CLEANING_CREW_NAME1" jdbcType="VARCHAR" property="cleaningCrewName1" />
+    <result column="CLEANING_CREW_NAME2" jdbcType="VARCHAR" property="cleaningCrewName2" />
+    <result column="DRIVER" jdbcType="VARCHAR" property="driver" />
+    <result column="CAR_NUMBER" jdbcType="VARCHAR" property="carNumber" />
+    <result column="CAR_NO" jdbcType="VARCHAR" property="carNo" />
+    <result column="ESCORT_NAME1" jdbcType="VARCHAR" property="escortName1" />
+    <result column="ESCORT_NAME2" jdbcType="VARCHAR" property="escortName2" />
+    <result column="ESCORT_ID1" jdbcType="VARCHAR" property="escortId1" />
+    <result column="ESCORT_ID2" jdbcType="VARCHAR" property="escortId2" />
+    <result column="START_TIME" jdbcType="TIMESTAMP" property="startTime" />
+    <result column="NEW_DRIVER" jdbcType="VARCHAR" property="newDriver" />
+    <result column="NEW_PERSON" jdbcType="VARCHAR" property="newPerson" />
+    <result column="CLASSES" jdbcType="VARCHAR" property="classes" />
+    <result column="NEW_DRIVER_NAME" jdbcType="VARCHAR" property="newDriverName" />
+    <result column="NEW_PERSON_NAME" jdbcType="VARCHAR" property="newPersonName" />
+    <result column="TASK_DATE" jdbcType="VARCHAR" property="taskDate" />
+    <result column="IS_SEND_WEIXIN_MSG" jdbcType="VARCHAR" property="isSendWeixinMsg" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.wangyi.entity.CarGroupWithBLOBs">
+    <result column="DRIVER_NAME" jdbcType="LONGVARCHAR" property="driverName" />
+    <result column="LINE_REMARKS" jdbcType="LONGVARCHAR" property="lineRemarks" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    ID, LINE_NAME, CLEANING_CREW1, CLEANING_CREW2, CLEANING_CREW_NAME1, CLEANING_CREW_NAME2, 
+    DRIVER, CAR_NUMBER, CAR_NO, ESCORT_NAME1, ESCORT_NAME2, ESCORT_ID1, ESCORT_ID2, START_TIME, 
+    NEW_DRIVER, NEW_PERSON, CLASSES, NEW_DRIVER_NAME, NEW_PERSON_NAME, TASK_DATE, IS_SEND_WEIXIN_MSG
+  </sql>
+  <sql id="Blob_Column_List">
+    DRIVER_NAME, LINE_REMARKS
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="ResultMapWithBLOBs">
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from e_car_group
+    where ID = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from e_car_group
+    where ID = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.wangyi.entity.CarGroupWithBLOBs">
+    <selectKey keyProperty="id" order="BEFORE" resultType="java.lang.String">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into e_car_group (ID, LINE_NAME, CLEANING_CREW1, 
+      CLEANING_CREW2, CLEANING_CREW_NAME1, CLEANING_CREW_NAME2, 
+      DRIVER, CAR_NUMBER, CAR_NO, 
+      ESCORT_NAME1, ESCORT_NAME2, ESCORT_ID1, 
+      ESCORT_ID2, START_TIME, NEW_DRIVER, 
+      NEW_PERSON, CLASSES, NEW_DRIVER_NAME, 
+      NEW_PERSON_NAME, TASK_DATE, IS_SEND_WEIXIN_MSG, 
+      DRIVER_NAME, LINE_REMARKS)
+    values (#{id,jdbcType=VARCHAR}, #{lineName,jdbcType=VARCHAR}, #{cleaningCrew1,jdbcType=VARCHAR}, 
+      #{cleaningCrew2,jdbcType=VARCHAR}, #{cleaningCrewName1,jdbcType=VARCHAR}, #{cleaningCrewName2,jdbcType=VARCHAR}, 
+      #{driver,jdbcType=VARCHAR}, #{carNumber,jdbcType=VARCHAR}, #{carNo,jdbcType=VARCHAR}, 
+      #{escortName1,jdbcType=VARCHAR}, #{escortName2,jdbcType=VARCHAR}, #{escortId1,jdbcType=VARCHAR}, 
+      #{escortId2,jdbcType=VARCHAR}, #{startTime,jdbcType=TIMESTAMP}, #{newDriver,jdbcType=VARCHAR}, 
+      #{newPerson,jdbcType=VARCHAR}, #{classes,jdbcType=VARCHAR}, #{newDriverName,jdbcType=VARCHAR}, 
+      #{newPersonName,jdbcType=VARCHAR}, #{taskDate,jdbcType=VARCHAR}, #{isSendWeixinMsg,jdbcType=VARCHAR}, 
+      #{driverName,jdbcType=LONGVARCHAR}, #{lineRemarks,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.wangyi.entity.CarGroupWithBLOBs">
+    <selectKey keyProperty="id" order="BEFORE" resultType="java.lang.String">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into e_car_group
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      ID,
+      <if test="lineName != null">
+        LINE_NAME,
+      </if>
+      <if test="cleaningCrew1 != null">
+        CLEANING_CREW1,
+      </if>
+      <if test="cleaningCrew2 != null">
+        CLEANING_CREW2,
+      </if>
+      <if test="cleaningCrewName1 != null">
+        CLEANING_CREW_NAME1,
+      </if>
+      <if test="cleaningCrewName2 != null">
+        CLEANING_CREW_NAME2,
+      </if>
+      <if test="driver != null">
+        DRIVER,
+      </if>
+      <if test="carNumber != null">
+        CAR_NUMBER,
+      </if>
+      <if test="carNo != null">
+        CAR_NO,
+      </if>
+      <if test="escortName1 != null">
+        ESCORT_NAME1,
+      </if>
+      <if test="escortName2 != null">
+        ESCORT_NAME2,
+      </if>
+      <if test="escortId1 != null">
+        ESCORT_ID1,
+      </if>
+      <if test="escortId2 != null">
+        ESCORT_ID2,
+      </if>
+      <if test="startTime != null">
+        START_TIME,
+      </if>
+      <if test="newDriver != null">
+        NEW_DRIVER,
+      </if>
+      <if test="newPerson != null">
+        NEW_PERSON,
+      </if>
+      <if test="classes != null">
+        CLASSES,
+      </if>
+      <if test="newDriverName != null">
+        NEW_DRIVER_NAME,
+      </if>
+      <if test="newPersonName != null">
+        NEW_PERSON_NAME,
+      </if>
+      <if test="taskDate != null">
+        TASK_DATE,
+      </if>
+      <if test="isSendWeixinMsg != null">
+        IS_SEND_WEIXIN_MSG,
+      </if>
+      <if test="driverName != null">
+        DRIVER_NAME,
+      </if>
+      <if test="lineRemarks != null">
+        LINE_REMARKS,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      #{id,jdbcType=VARCHAR},
+      <if test="lineName != null">
+        #{lineName,jdbcType=VARCHAR},
+      </if>
+      <if test="cleaningCrew1 != null">
+        #{cleaningCrew1,jdbcType=VARCHAR},
+      </if>
+      <if test="cleaningCrew2 != null">
+        #{cleaningCrew2,jdbcType=VARCHAR},
+      </if>
+      <if test="cleaningCrewName1 != null">
+        #{cleaningCrewName1,jdbcType=VARCHAR},
+      </if>
+      <if test="cleaningCrewName2 != null">
+        #{cleaningCrewName2,jdbcType=VARCHAR},
+      </if>
+      <if test="driver != null">
+        #{driver,jdbcType=VARCHAR},
+      </if>
+      <if test="carNumber != null">
+        #{carNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="carNo != null">
+        #{carNo,jdbcType=VARCHAR},
+      </if>
+      <if test="escortName1 != null">
+        #{escortName1,jdbcType=VARCHAR},
+      </if>
+      <if test="escortName2 != null">
+        #{escortName2,jdbcType=VARCHAR},
+      </if>
+      <if test="escortId1 != null">
+        #{escortId1,jdbcType=VARCHAR},
+      </if>
+      <if test="escortId2 != null">
+        #{escortId2,jdbcType=VARCHAR},
+      </if>
+      <if test="startTime != null">
+        #{startTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="newDriver != null">
+        #{newDriver,jdbcType=VARCHAR},
+      </if>
+      <if test="newPerson != null">
+        #{newPerson,jdbcType=VARCHAR},
+      </if>
+      <if test="classes != null">
+        #{classes,jdbcType=VARCHAR},
+      </if>
+      <if test="newDriverName != null">
+        #{newDriverName,jdbcType=VARCHAR},
+      </if>
+      <if test="newPersonName != null">
+        #{newPersonName,jdbcType=VARCHAR},
+      </if>
+      <if test="taskDate != null">
+        #{taskDate,jdbcType=VARCHAR},
+      </if>
+      <if test="isSendWeixinMsg != null">
+        #{isSendWeixinMsg,jdbcType=VARCHAR},
+      </if>
+      <if test="driverName != null">
+        #{driverName,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="lineRemarks != null">
+        #{lineRemarks,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.wangyi.entity.CarGroupWithBLOBs">
+    update e_car_group
+    <set>
+      <if test="lineName != null">
+        LINE_NAME = #{lineName,jdbcType=VARCHAR},
+      </if>
+      <if test="cleaningCrew1 != null">
+        CLEANING_CREW1 = #{cleaningCrew1,jdbcType=VARCHAR},
+      </if>
+      <if test="cleaningCrew2 != null">
+        CLEANING_CREW2 = #{cleaningCrew2,jdbcType=VARCHAR},
+      </if>
+      <if test="cleaningCrewName1 != null">
+        CLEANING_CREW_NAME1 = #{cleaningCrewName1,jdbcType=VARCHAR},
+      </if>
+      <if test="cleaningCrewName2 != null">
+        CLEANING_CREW_NAME2 = #{cleaningCrewName2,jdbcType=VARCHAR},
+      </if>
+      <if test="driver != null">
+        DRIVER = #{driver,jdbcType=VARCHAR},
+      </if>
+      <if test="carNumber != null">
+        CAR_NUMBER = #{carNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="carNo != null">
+        CAR_NO = #{carNo,jdbcType=VARCHAR},
+      </if>
+      <if test="escortName1 != null">
+        ESCORT_NAME1 = #{escortName1,jdbcType=VARCHAR},
+      </if>
+      <if test="escortName2 != null">
+        ESCORT_NAME2 = #{escortName2,jdbcType=VARCHAR},
+      </if>
+      <if test="escortId1 != null">
+        ESCORT_ID1 = #{escortId1,jdbcType=VARCHAR},
+      </if>
+      <if test="escortId2 != null">
+        ESCORT_ID2 = #{escortId2,jdbcType=VARCHAR},
+      </if>
+      <if test="startTime != null">
+        START_TIME = #{startTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="newDriver != null">
+        NEW_DRIVER = #{newDriver,jdbcType=VARCHAR},
+      </if>
+      <if test="newPerson != null">
+        NEW_PERSON = #{newPerson,jdbcType=VARCHAR},
+      </if>
+      <if test="classes != null">
+        CLASSES = #{classes,jdbcType=VARCHAR},
+      </if>
+      <if test="newDriverName != null">
+        NEW_DRIVER_NAME = #{newDriverName,jdbcType=VARCHAR},
+      </if>
+      <if test="newPersonName != null">
+        NEW_PERSON_NAME = #{newPersonName,jdbcType=VARCHAR},
+      </if>
+      <if test="taskDate != null">
+        TASK_DATE = #{taskDate,jdbcType=VARCHAR},
+      </if>
+      <if test="isSendWeixinMsg != null">
+        IS_SEND_WEIXIN_MSG = #{isSendWeixinMsg,jdbcType=VARCHAR},
+      </if>
+      <if test="driverName != null">
+        DRIVER_NAME = #{driverName,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="lineRemarks != null">
+        LINE_REMARKS = #{lineRemarks,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.wangyi.entity.CarGroupWithBLOBs">
+    update e_car_group
+    set LINE_NAME = #{lineName,jdbcType=VARCHAR},
+      CLEANING_CREW1 = #{cleaningCrew1,jdbcType=VARCHAR},
+      CLEANING_CREW2 = #{cleaningCrew2,jdbcType=VARCHAR},
+      CLEANING_CREW_NAME1 = #{cleaningCrewName1,jdbcType=VARCHAR},
+      CLEANING_CREW_NAME2 = #{cleaningCrewName2,jdbcType=VARCHAR},
+      DRIVER = #{driver,jdbcType=VARCHAR},
+      CAR_NUMBER = #{carNumber,jdbcType=VARCHAR},
+      CAR_NO = #{carNo,jdbcType=VARCHAR},
+      ESCORT_NAME1 = #{escortName1,jdbcType=VARCHAR},
+      ESCORT_NAME2 = #{escortName2,jdbcType=VARCHAR},
+      ESCORT_ID1 = #{escortId1,jdbcType=VARCHAR},
+      ESCORT_ID2 = #{escortId2,jdbcType=VARCHAR},
+      START_TIME = #{startTime,jdbcType=TIMESTAMP},
+      NEW_DRIVER = #{newDriver,jdbcType=VARCHAR},
+      NEW_PERSON = #{newPerson,jdbcType=VARCHAR},
+      CLASSES = #{classes,jdbcType=VARCHAR},
+      NEW_DRIVER_NAME = #{newDriverName,jdbcType=VARCHAR},
+      NEW_PERSON_NAME = #{newPersonName,jdbcType=VARCHAR},
+      TASK_DATE = #{taskDate,jdbcType=VARCHAR},
+      IS_SEND_WEIXIN_MSG = #{isSendWeixinMsg,jdbcType=VARCHAR},
+      DRIVER_NAME = #{driverName,jdbcType=LONGVARCHAR},
+      LINE_REMARKS = #{lineRemarks,jdbcType=LONGVARCHAR}
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.wangyi.entity.CarGroup">
+    update e_car_group
+    set LINE_NAME = #{lineName,jdbcType=VARCHAR},
+      CLEANING_CREW1 = #{cleaningCrew1,jdbcType=VARCHAR},
+      CLEANING_CREW2 = #{cleaningCrew2,jdbcType=VARCHAR},
+      CLEANING_CREW_NAME1 = #{cleaningCrewName1,jdbcType=VARCHAR},
+      CLEANING_CREW_NAME2 = #{cleaningCrewName2,jdbcType=VARCHAR},
+      DRIVER = #{driver,jdbcType=VARCHAR},
+      CAR_NUMBER = #{carNumber,jdbcType=VARCHAR},
+      CAR_NO = #{carNo,jdbcType=VARCHAR},
+      ESCORT_NAME1 = #{escortName1,jdbcType=VARCHAR},
+      ESCORT_NAME2 = #{escortName2,jdbcType=VARCHAR},
+      ESCORT_ID1 = #{escortId1,jdbcType=VARCHAR},
+      ESCORT_ID2 = #{escortId2,jdbcType=VARCHAR},
+      START_TIME = #{startTime,jdbcType=TIMESTAMP},
+      NEW_DRIVER = #{newDriver,jdbcType=VARCHAR},
+      NEW_PERSON = #{newPerson,jdbcType=VARCHAR},
+      CLASSES = #{classes,jdbcType=VARCHAR},
+      NEW_DRIVER_NAME = #{newDriverName,jdbcType=VARCHAR},
+      NEW_PERSON_NAME = #{newPersonName,jdbcType=VARCHAR},
+      TASK_DATE = #{taskDate,jdbcType=VARCHAR},
+      IS_SEND_WEIXIN_MSG = #{isSendWeixinMsg,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>

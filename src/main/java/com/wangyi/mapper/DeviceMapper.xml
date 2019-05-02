@@ -1,0 +1,317 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.wangyi.mapper.DeviceMapper" >
+  <resultMap id="BaseResultMap" type="com.wangyi.entity.Device" >
+    <id column="ID" property="id" jdbcType="VARCHAR" />
+    <result column="DEVICE_NUMBER" property="deviceNumber" jdbcType="VARCHAR" />
+    <result column="LOCK_TYPE" property="lockType" jdbcType="VARCHAR" />
+    <result column="STATUS" property="status" jdbcType="VARCHAR" />
+    <result column="UNLOCK_TYPE" property="unlockType" jdbcType="VARCHAR" />
+    <result column="SHORT_ADDRESS" property="shortAddress" jdbcType="VARCHAR" />
+    <result column="AREA_ID" property="areaId" jdbcType="VARCHAR" />
+    <result column="DEVICE_NAME" property="deviceName" jdbcType="VARCHAR" />
+    <result column="TRANSFERBOX" property="transferbox" jdbcType="VARCHAR" />
+    <result column="DEVICE_TYPE" property="deviceType" jdbcType="VARCHAR" />
+    <result column="CASHBOX_MODEL" property="cashboxModel" jdbcType="VARCHAR" />
+    <result column="OPEN_TIME" property="openTime" jdbcType="VARCHAR" />
+    <result column="CLOSE_TIME" property="closeTime" jdbcType="VARCHAR" />
+    <result column="LAST_CASH" property="lastCash" jdbcType="DECIMAL" />
+    <result column="LAST_BOX" property="lastBox" jdbcType="VARCHAR" />
+    <result column="QRCODE" property="qrcode" jdbcType="VARCHAR" />
+    <result column="WEANING_TIME" property="weaningTime" jdbcType="TIMESTAMP" />
+    <result column="RESTART_TIME" property="restartTime" jdbcType="TIMESTAMP" />
+    <result column="DEVICE_ROOM" property="deviceRoom" jdbcType="VARCHAR" />
+    <result column="LOCK_ID" property="lockId" jdbcType="VARCHAR" />
+    <result column="IS_URBAN" property="isUrban" jdbcType="VARCHAR" />
+    <result column="INTER_CITY" property="interCity" jdbcType="VARCHAR" />
+    <result column="PICK_UP_TIME" property="pickUpTime" jdbcType="TIMESTAMP" />
+    <result column="DEVICE_BELONG" property="deviceBelong" jdbcType="VARCHAR" />
+    <result column="DEVICE_PRO" property="devicePro" jdbcType="VARCHAR" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.wangyi.entity.DeviceWithBLOBs" extends="BaseResultMap" >
+    <result column="ORGANIZATION_ID" property="organizationId" jdbcType="LONGVARCHAR" />
+    <result column="ADDRESS" property="address" jdbcType="LONGVARCHAR" />
+    <result column="NOTES" property="notes" jdbcType="LONGVARCHAR" />
+    <result column="PAY_CARD_ADDRESS" property="payCardAddress" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ID, DEVICE_NUMBER, LOCK_TYPE, STATUS, UNLOCK_TYPE, SHORT_ADDRESS, AREA_ID, DEVICE_NAME, 
+    TRANSFERBOX, DEVICE_TYPE, CASHBOX_MODEL, OPEN_TIME, CLOSE_TIME, LAST_CASH, LAST_BOX, 
+    QRCODE, WEANING_TIME, RESTART_TIME, DEVICE_ROOM, LOCK_ID, IS_URBAN, INTER_CITY, PICK_UP_TIME, 
+    DEVICE_BELONG, DEVICE_PRO
+  </sql>
+  <sql id="Blob_Column_List" >
+    ORGANIZATION_ID, ADDRESS, NOTES, PAY_CARD_ADDRESS
+  </sql>
+  <insert id="insertSelective" parameterType="com.wangyi.entity.DeviceWithBLOBs" >
+    insert into e_device
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="deviceNumber != null" >
+        DEVICE_NUMBER,
+      </if>
+      <if test="lockType != null" >
+        LOCK_TYPE,
+      </if>
+      <if test="status != null" >
+        STATUS,
+      </if>
+      <if test="unlockType != null" >
+        UNLOCK_TYPE,
+      </if>
+      <if test="shortAddress != null" >
+        SHORT_ADDRESS,
+      </if>
+      <if test="areaId != null" >
+        AREA_ID,
+      </if>
+      <if test="deviceName != null" >
+        DEVICE_NAME,
+      </if>
+      <if test="transferbox != null" >
+        TRANSFERBOX,
+      </if>
+      <if test="deviceType != null" >
+        DEVICE_TYPE,
+      </if>
+      <if test="cashboxModel != null" >
+        CASHBOX_MODEL,
+      </if>
+      <if test="openTime != null" >
+        OPEN_TIME,
+      </if>
+      <if test="closeTime != null" >
+        CLOSE_TIME,
+      </if>
+      <if test="lastCash != null" >
+        LAST_CASH,
+      </if>
+      <if test="lastBox != null" >
+        LAST_BOX,
+      </if>
+      <if test="qrcode != null" >
+        QRCODE,
+      </if>
+      <if test="weaningTime != null" >
+        WEANING_TIME,
+      </if>
+      <if test="restartTime != null" >
+        RESTART_TIME,
+      </if>
+      <if test="deviceRoom != null" >
+        DEVICE_ROOM,
+      </if>
+      <if test="lockId != null" >
+        LOCK_ID,
+      </if>
+      <if test="isUrban != null" >
+        IS_URBAN,
+      </if>
+      <if test="interCity != null" >
+        INTER_CITY,
+      </if>
+      <if test="pickUpTime != null" >
+        PICK_UP_TIME,
+      </if>
+      <if test="deviceBelong != null" >
+        DEVICE_BELONG,
+      </if>
+      <if test="devicePro != null" >
+        DEVICE_PRO,
+      </if>
+      <if test="organizationId != null" >
+        ORGANIZATION_ID,
+      </if>
+      <if test="address != null" >
+        ADDRESS,
+      </if>
+      <if test="notes != null" >
+        NOTES,
+      </if>
+      <if test="payCardAddress != null" >
+        PAY_CARD_ADDRESS,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="deviceNumber != null" >
+        #{deviceNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="lockType != null" >
+        #{lockType,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="unlockType != null" >
+        #{unlockType,jdbcType=VARCHAR},
+      </if>
+      <if test="shortAddress != null" >
+        #{shortAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="areaId != null" >
+        #{areaId,jdbcType=VARCHAR},
+      </if>
+      <if test="deviceName != null" >
+        #{deviceName,jdbcType=VARCHAR},
+      </if>
+      <if test="transferbox != null" >
+        #{transferbox,jdbcType=VARCHAR},
+      </if>
+      <if test="deviceType != null" >
+        #{deviceType,jdbcType=VARCHAR},
+      </if>
+      <if test="cashboxModel != null" >
+        #{cashboxModel,jdbcType=VARCHAR},
+      </if>
+      <if test="openTime != null" >
+        #{openTime,jdbcType=VARCHAR},
+      </if>
+      <if test="closeTime != null" >
+        #{closeTime,jdbcType=VARCHAR},
+      </if>
+      <if test="lastCash != null" >
+        #{lastCash,jdbcType=DECIMAL},
+      </if>
+      <if test="lastBox != null" >
+        #{lastBox,jdbcType=VARCHAR},
+      </if>
+      <if test="qrcode != null" >
+        #{qrcode,jdbcType=VARCHAR},
+      </if>
+      <if test="weaningTime != null" >
+        #{weaningTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="restartTime != null" >
+        #{restartTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="deviceRoom != null" >
+        #{deviceRoom,jdbcType=VARCHAR},
+      </if>
+      <if test="lockId != null" >
+        #{lockId,jdbcType=VARCHAR},
+      </if>
+      <if test="isUrban != null" >
+        #{isUrban,jdbcType=VARCHAR},
+      </if>
+      <if test="interCity != null" >
+        #{interCity,jdbcType=VARCHAR},
+      </if>
+      <if test="pickUpTime != null" >
+        #{pickUpTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="deviceBelong != null" >
+        #{deviceBelong,jdbcType=VARCHAR},
+      </if>
+      <if test="devicePro != null" >
+        #{devicePro,jdbcType=VARCHAR},
+      </if>
+      <if test="organizationId != null" >
+        #{organizationId,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="address != null" >
+        #{address,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="notes != null" >
+        #{notes,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="payCardAddress != null" >
+        #{payCardAddress,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.wangyi.entity.DeviceWithBLOBs" >
+    update e_device
+    <set >
+      <if test="deviceNumber != null" >
+        DEVICE_NUMBER = #{deviceNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="lockType != null" >
+        LOCK_TYPE = #{lockType,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        STATUS = #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="unlockType != null" >
+        UNLOCK_TYPE = #{unlockType,jdbcType=VARCHAR},
+      </if>
+      <if test="shortAddress != null" >
+        SHORT_ADDRESS = #{shortAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="areaId != null" >
+        AREA_ID = #{areaId,jdbcType=VARCHAR},
+      </if>
+      <if test="deviceName != null" >
+        DEVICE_NAME = #{deviceName,jdbcType=VARCHAR},
+      </if>
+      <if test="transferbox != null" >
+        TRANSFERBOX = #{transferbox,jdbcType=VARCHAR},
+      </if>
+      <if test="deviceType != null" >
+        DEVICE_TYPE = #{deviceType,jdbcType=VARCHAR},
+      </if>
+      <if test="cashboxModel != null" >
+        CASHBOX_MODEL = #{cashboxModel,jdbcType=VARCHAR},
+      </if>
+      <if test="openTime != null" >
+        OPEN_TIME = #{openTime,jdbcType=VARCHAR},
+      </if>
+      <if test="closeTime != null" >
+        CLOSE_TIME = #{closeTime,jdbcType=VARCHAR},
+      </if>
+      <if test="lastCash != null" >
+        LAST_CASH = #{lastCash,jdbcType=DECIMAL},
+      </if>
+      <if test="lastBox != null" >
+        LAST_BOX = #{lastBox,jdbcType=VARCHAR},
+      </if>
+      <if test="qrcode != null" >
+        QRCODE = #{qrcode,jdbcType=VARCHAR},
+      </if>
+      <if test="weaningTime != null" >
+        WEANING_TIME = #{weaningTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="restartTime != null" >
+        RESTART_TIME = #{restartTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="deviceRoom != null" >
+        DEVICE_ROOM = #{deviceRoom,jdbcType=VARCHAR},
+      </if>
+      <if test="lockId != null" >
+        LOCK_ID = #{lockId,jdbcType=VARCHAR},
+      </if>
+      <if test="isUrban != null" >
+        IS_URBAN = #{isUrban,jdbcType=VARCHAR},
+      </if>
+      <if test="interCity != null" >
+        INTER_CITY = #{interCity,jdbcType=VARCHAR},
+      </if>
+      <if test="pickUpTime != null" >
+        PICK_UP_TIME = #{pickUpTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="deviceBelong != null" >
+        DEVICE_BELONG = #{deviceBelong,jdbcType=VARCHAR},
+      </if>
+      <if test="devicePro != null" >
+        DEVICE_PRO = #{devicePro,jdbcType=VARCHAR},
+      </if>
+      <if test="organizationId != null" >
+        ORGANIZATION_ID = #{organizationId,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="address != null" >
+        ADDRESS = #{address,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="notes != null" >
+        NOTES = #{notes,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="payCardAddress != null" >
+        PAY_CARD_ADDRESS = #{payCardAddress,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>

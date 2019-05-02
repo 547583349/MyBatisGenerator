@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:reg="http://www.dangdang.com/schema/ddframe/reg"
+       xmlns:job="http://www.dangdang.com/schema/ddframe/job"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+                        http://www.springframework.org/schema/beans/spring-beans.xsd
+                        http://www.dangdang.com/schema/ddframe/reg
+                        http://www.dangdang.com/schema/ddframe/reg/reg.xsd
+                        http://www.dangdang.com/schema/ddframe/job
+                        http://www.dangdang.com/schema/ddframe/job/job.xsd
+                        ">
+    <!--配置作业注册中心 -->
+    <reg:zookeeper id="regCenter" server-lists="127.0.0.1:2181"
+                   namespace="elastic-job" base-sleep-time-milliseconds="1000"
+                   max-sleep-time-milliseconds="3000" max-retries="3" />
+
+    <!-- 配置作业-->
+    <job:simple id="jobSimpleJob" class="com.wangyi.MyElasticJob"
+                registry-center-ref="regCenter" cron="0/5 * * * * ?"
+                sharding-total-count="3" sharding-item-parameters="0=A,1=B,2=C" />
+
+
+    <!-- 配置数据流作业, job-parameter定义的为分页参数
+ sharding-total-count 作业分片总数
+ sharding-item-parameters分片序列号和参数用等号分隔，多个键值对用逗号分隔 ,分片序列号从0开始，不可大于或等于作业分片总数
+ job-parameter 作业自定义参数，可通过传递该参数为作业调度的业务方法传参，用于实现带参数的作业
+ 例：每次获取的数据量、作业实例从数据库读取的主键等
+ job-sharding-strategy-class 作业分片策略实现类全路径 默认使用平均分配策略
+ streaming-process 是否流式处理数据
+ reconcile-interval-minutes 修复作业服务器不一致状态服务调度间隔时间，配置为小于1的任意值表示不执行修复
+ event-trace-rdb-data-source 作业事件追踪的数据源Bean引用
+ -->
+    <job:dataflow registry-center-ref="regCenter" cron="0/10 * * * * ?"
+          sharding-total-count="3"
+            sharding-item-parameters="0=a,1=b,2=c"
+            job-sharding-strategy-class="com.dangdang.ddframe.job.lite.api.strategy.impl.AverageAllocationJobShardingStrategy"
+            job-parameter="100" streaming-process="true"
+            reconcile-interval-minutes="10" overwrite="true"
+            event-trace-rdb-data-source="dataSource"/>
+
+    
+</beans>

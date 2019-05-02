@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wangyi.mapper.LockDAO">
+  <resultMap id="BaseResultMap" type="com.wangyi.entity.Lock">
+    <id column="ID" jdbcType="VARCHAR" property="id" />
+    <result column="CREATE_TIME" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="UPDATE_TIME" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="ACTIVE" jdbcType="VARCHAR" property="active" />
+    <result column="ACTIVE_INFO" jdbcType="VARCHAR" property="activeInfo" />
+    <result column="ACTIVE_TIME" jdbcType="TIMESTAMP" property="activeTime" />
+    <result column="ATM_SN" jdbcType="VARCHAR" property="atmSn" />
+    <result column="LOCK_ID" jdbcType="VARCHAR" property="lockId" />
+    <result column="LOCK_CODE" jdbcType="VARCHAR" property="lockCode" />
+    <result column="STATUS" jdbcType="DECIMAL" property="status" />
+    <result column="ORG_ID" jdbcType="VARCHAR" property="orgId" />
+    <result column="HAS_IBT" jdbcType="CHAR" property="hasIbt" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    ID, CREATE_TIME, UPDATE_TIME, ACTIVE, ACTIVE_INFO, ACTIVE_TIME, ATM_SN, LOCK_ID, 
+    LOCK_CODE, STATUS, ORG_ID, HAS_IBT
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from b_lock
+    where ID = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from b_lock
+    where ID = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.wangyi.entity.Lock">
+    insert into b_lock (ID, CREATE_TIME, UPDATE_TIME, 
+      ACTIVE, ACTIVE_INFO, ACTIVE_TIME, 
+      ATM_SN, LOCK_ID, LOCK_CODE, 
+      STATUS, ORG_ID, HAS_IBT)
+    values (#{id,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, 
+      #{active,jdbcType=VARCHAR}, #{activeInfo,jdbcType=VARCHAR}, #{activeTime,jdbcType=TIMESTAMP}, 
+      #{atmSn,jdbcType=VARCHAR}, #{lockId,jdbcType=VARCHAR}, #{lockCode,jdbcType=VARCHAR}, 
+      #{status,jdbcType=DECIMAL}, #{orgId,jdbcType=VARCHAR}, #{hasIbt,jdbcType=CHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.wangyi.entity.Lock">
+    insert into b_lock
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        ID,
+      </if>
+      <if test="createTime != null">
+        CREATE_TIME,
+      </if>
+      <if test="updateTime != null">
+        UPDATE_TIME,
+      </if>
+      <if test="active != null">
+        ACTIVE,
+      </if>
+      <if test="activeInfo != null">
+        ACTIVE_INFO,
+      </if>
+      <if test="activeTime != null">
+        ACTIVE_TIME,
+      </if>
+      <if test="atmSn != null">
+        ATM_SN,
+      </if>
+      <if test="lockId != null">
+        LOCK_ID,
+      </if>
+      <if test="lockCode != null">
+        LOCK_CODE,
+      </if>
+      <if test="status != null">
+        STATUS,
+      </if>
+      <if test="orgId != null">
+        ORG_ID,
+      </if>
+      <if test="hasIbt != null">
+        HAS_IBT,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="active != null">
+        #{active,jdbcType=VARCHAR},
+      </if>
+      <if test="activeInfo != null">
+        #{activeInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="activeTime != null">
+        #{activeTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="atmSn != null">
+        #{atmSn,jdbcType=VARCHAR},
+      </if>
+      <if test="lockId != null">
+        #{lockId,jdbcType=VARCHAR},
+      </if>
+      <if test="lockCode != null">
+        #{lockCode,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=DECIMAL},
+      </if>
+      <if test="orgId != null">
+        #{orgId,jdbcType=VARCHAR},
+      </if>
+      <if test="hasIbt != null">
+        #{hasIbt,jdbcType=CHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.wangyi.entity.Lock">
+    update b_lock
+    <set>
+      <if test="createTime != null">
+        CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="active != null">
+        ACTIVE = #{active,jdbcType=VARCHAR},
+      </if>
+      <if test="activeInfo != null">
+        ACTIVE_INFO = #{activeInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="activeTime != null">
+        ACTIVE_TIME = #{activeTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="atmSn != null">
+        ATM_SN = #{atmSn,jdbcType=VARCHAR},
+      </if>
+      <if test="lockId != null">
+        LOCK_ID = #{lockId,jdbcType=VARCHAR},
+      </if>
+      <if test="lockCode != null">
+        LOCK_CODE = #{lockCode,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        STATUS = #{status,jdbcType=DECIMAL},
+      </if>
+      <if test="orgId != null">
+        ORG_ID = #{orgId,jdbcType=VARCHAR},
+      </if>
+      <if test="hasIbt != null">
+        HAS_IBT = #{hasIbt,jdbcType=CHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.wangyi.entity.Lock">
+    update b_lock
+    set CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+      ACTIVE = #{active,jdbcType=VARCHAR},
+      ACTIVE_INFO = #{activeInfo,jdbcType=VARCHAR},
+      ACTIVE_TIME = #{activeTime,jdbcType=TIMESTAMP},
+      ATM_SN = #{atmSn,jdbcType=VARCHAR},
+      LOCK_ID = #{lockId,jdbcType=VARCHAR},
+      LOCK_CODE = #{lockCode,jdbcType=VARCHAR},
+      STATUS = #{status,jdbcType=DECIMAL},
+      ORG_ID = #{orgId,jdbcType=VARCHAR},
+      HAS_IBT = #{hasIbt,jdbcType=CHAR}
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>
